@@ -6,7 +6,7 @@ class ProductList extends React.Component {
   componentDidMount() {
     this.setState({ products: Seed.products });
   }
-
+  //convert to spread operator
   handleProductUpVote(productId) {
     const nextProducts = this.state.products.map((product) => {
       if (product.id === productId) {
