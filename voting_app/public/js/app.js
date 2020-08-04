@@ -1,13 +1,11 @@
 class ProductList extends React.Component {
-  state = {
-    products: [],
-  };
+  state = { products: [] };
 
   componentDidMount() {
     this.setState({ products: Seed.products });
   }
-  //convert to spread operator
-  handleProductUpVote(productId) {
+
+  handleProductUpVote = (productId) => {
     const nextProducts = this.state.products.map((product) => {
       if (product.id === productId) {
         return Object.assign({}, product, {
@@ -20,7 +18,7 @@ class ProductList extends React.Component {
     this.setState({
       products: nextProducts,
     });
-  }
+  };
 
   render() {
     const products = this.state.products.sort((a, b) => b.votes - a.votes);
