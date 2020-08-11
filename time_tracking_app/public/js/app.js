@@ -69,11 +69,28 @@ class TimerForm extends React.Component {
               <input type="text" defaultValue={this.props.project} />
             </div>
             <div className="ui two bottom attached buttons">
-              <div className="ui basic blue button"></div>
+              <button className="ui basic blue button">{submitText}</button>
+              <button className="ui basic red button">Cancel</button>
             </div>
           </div>
         </div>
       </div>
     );
+  }
+}
+
+class ToggleableTimerForm extends React.Component {
+  render() {
+    if (this.props.isOpen) {
+      return <TimerForm />;
+    } else {
+      return (
+        <div className="ui basic content center aligned segment">
+          <button className="ui basic button icon">
+            <i className="plus icon" />
+          </button>
+        </div>
+      );
+    }
   }
 }
