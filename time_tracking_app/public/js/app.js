@@ -1,3 +1,5 @@
+// With your renewed understanding of React’s state paradigm, let’s reflect on props again.
+
 class TimersDashboard extends React.Component {
   state = {
     timers: [
@@ -32,36 +34,38 @@ class TimersDashboard extends React.Component {
 
 class EditableTimerList extends React.Component {
   render() {
-    return (
-      <div id="timers">
-        <EditableTimer
-          title="Learn React"
-          project="Web Domination"
-          elapsed="8986300"
-          runningSince={null}
-          editFormOpen={false}
-        />
-        <EditableTimer
-          title="Learn extreme ironing"
-          project="World Domination"
-          elapsed="3890985"
-          runningSince={null}
-          editFormOpen={true}
-        />
-      </div>
-    );
+    const timers = this.props.timers.map((timer) => (
+      <EditableTimer
+        key={timer.id}
+        id={timer.id}
+        title={timer.title}
+        project={timer.project}
+        elapsed={timer.elapsed}
+        runningSince={timer.runningSince}
+      />
+    ));
+    return <div id="timers">{timers}</div>;
   }
 }
 
 class EditableTimer extends React.Component {
+  state = {
+    editFormOpen: false,
+  };
+
   render() {
-    if (this.props.editFormOpen) {
+    if (this.state.editFormOpen) {
       return (
-        <TimerForm title={this.props.title} project={this.props.project} />
+        <TimerForm
+          id={this.props.id}
+          title={this.props.title}
+          project={this.props.project}
+        />
       );
     } else {
       return (
         <Timer
+          id={this.props.id}
           title={this.props.title}
           project={this.props.project}
           elapsed={this.props.elapsed}
