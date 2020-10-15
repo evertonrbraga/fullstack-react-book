@@ -1,5 +1,3 @@
-// o recap, here’s an example of the lifecycle of TimerForm
-
 class TimersDashboard extends React.Component {
   state = {
     timers: [
